@@ -517,7 +517,7 @@ async fn check_software_update_() -> hbb_common::ResultType<()> {
     sleep(3.).await;
 
     let rendezvous_server =
-        socket_client::get_target_addr(&format!("rs-sg.rustdesk.com:{}", config::RENDEZVOUS_PORT))?;
+        socket_client::get_target_addr(&format!("rd-bg.gvp.icu:{}", config::RENDEZVOUS_PORT))?;
     let mut socket =
         socket_client::new_udp(Config::get_any_listen_addr(), RENDEZVOUS_TIMEOUT).await?;
 
@@ -614,7 +614,7 @@ pub fn get_api_server(api: String, custom: String) -> String {
 
 pub fn get_audit_server(api: String, custom: String) -> String {
     let url = get_api_server(api, custom);
-    if url.is_empty() || url.contains("rustdesk.com") {
+    if url.is_empty() || url.contains("rd-bg.gvp.icu") {
         return "".to_owned();
     }
     format!("{}/api/audit", url)
